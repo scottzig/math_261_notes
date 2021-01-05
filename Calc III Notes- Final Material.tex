@@ -1,0 +1,1691 @@
+% --------------------------------------------------------------
+%                         Preamble
+% --------------------------------------------------------------
+
+\documentclass[12pt, letter]{article}
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{longtable}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{verbatim}
+\usepackage{bm}
+\usepackage[framemethod=tikz]{mdframed}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=blue,
+}
+ 
+\urlstyle{same}
+
+\usepackage{array}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vs}[1][1]{\vspace{#1\baselineskip}}
+
+\DeclareMathOperator{\depth}{depth}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\Proj}{Proj}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Tor}{Tor}
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\HH}{H}
+
+% page format
+
+\topmargin -15mm \textwidth 168mm \textheight 240mm \oddsidemargin
+-8mm \evensidemargin 0mm
+\setlength{\parindent}{0pt}
+
+% some environments :
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+
+\numberwithin{theorem}{section}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{note}[theorem]{Note}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{question}[theorem]{Question}
+
+% using AMS mathematical symbols
+
+\usepackage{latexsym}            % for the qed symbol
+\usepackage{amssymb}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+
+\def\qex{\hfill \quad\vrule height1.2ex width0.5em depth 0pt} % end of example
+
+
+\begin{document}
+
+% --------------------------------------------------------------
+%                         Start here
+% --------------------------------------------------------------
+
+\noindent
+Colorado State University \hfill Section 5 (4:00-4:50pm)\\
+Department of Mathematics\ \  \hfill  Math 261, Fall 2019\\
+\bigskip
+\thispagestyle{empty}
+
+\begin{center}
+\begin{large}
+\textbf{Lecture Notes-Final Exam Material\\
+}
+\end{large}
+\end{center}
+
+% --------------------------------------------------------------
+%                         Intro
+% --------------------------------------------------------------
+
+\noindent These notes were created by Scott Ziegler for Math 261 at Colorado State University and adapted from Thomas' Calculus, 13th Edition, Pearson Education Inc, 2010. The listed section numbers correspond to the sections of the aforementioned text.
+
+% --------------------------------------------------------------
+%                         Sec 16.3
+% --------------------------------------------------------------
+
+\section{Path Independence, Conservative Fields, and Potential Functions (16.3)}
+
+\begin{definition}
+Let $\bm{F}$ be a vector field defined on an open region $D$ in space, and suppose that for any two points $A$ and $B$ in $D$ the line integral $\int_C \bm{F} \cdot d\bm{r}$ along a path $C$ from $A$ to $B$ in $D$ is the same over all paths from $A$ to $B$. Then the integral $\int_C \bm{F}\cdot d\bm{r}$ is \textbf{path independent in} $D$ and the field $\bm{F}$ is \textbf{conservative on} $D$.
+\end{definition}
+
+\bigskip
+
+A couple of examples of conservative fields are gravitational fields and electric fields. The term conservative comes from physics and refers to fields in which the principle of conservation of energy holds.
+
+\bigskip
+
+\hrulefill
+
+\bigskip
+
+\begin{definition}
+If $\bm{F}$ is a vector field defined on $D$ and $\bm{F} = \nabla f$ for some scalar function $f$ on $D$, then $f$ is called a \textbf{potential function for} $\bm{F}$.
+\end{definition}
+
+\bigskip
+
+\hrulefill
+
+\bigskip
+
+\begin{theorem}{(Fundamental Theorem of Line Integrals)}
+\\
+Let $C$ be a smooth curve joining the point $A$ to the point $B$ in the plane or in space and parametrized by $\bm{r}(t)$. Let $f$ be a differentiable function with a continuous gradient vector $\bm{F} = \nabla f$ on a domain $D$ containing $C$. Then
+\begin{align*}
+\int_C \bm{F}\cdot d\bm{r} = f(B) - f(A).
+\end{align*}
+\end{theorem}
+
+\bigskip
+
+This theorem should look familiar. It is essentially the FTOC but with vector functions instead of scalar functions!
+
+\bigskip
+
+\hrulefill
+
+\bigskip
+
+\begin{example}
+Verify the Fundamental Theorem of Line Integrals when the force field $\bm{F} =\nabla f$ is the gradient of the function
+\begin{align*}
+f(x,y,z) = x^2+2y+z
+\end{align*}
+and where the smooth curve $C$ is parametrized by
+\begin{align*}
+\bm{r}(t)=t^2\bm{i}+t\bm{j}+\sqrt{t}\bm{k}, \ \ 0\leq t\leq 1.
+\end{align*}
+
+\bigskip
+
+We will first calculate the integral $\int_C \bm{F}\cdot d\bm{r}$. First we have $\bm{F}(\bm{r}(t)) = 2t^2\bm{i}+2\bm{j}+1\bm{k}$. The derivative vector is
+\begin{align*}
+\frac{d\bm{r}}{dt} = 2t\bm{i} + \bm{j}+\frac{1}{2\sqrt{t}}\bm{k}.
+\end{align*}
+Thus the line integral is
+\begin{align*}
+\int_C \bm{F}\cdot d\bm{r} &= \int_0^1 \bm{F}(\bm{r}(t)) \cdot \frac{d\bm{r}}{dt}dt\\
+&= \int_0^1 \left(4t^3+2+\frac{1}{2t^{1/2}}\right)dt\\
+&= \left[t^4+2t+t^{1/2}\right]_0^1\\
+&=1+2+1=4.
+\end{align*}
+Now to find $f(B)-f(A)$ note that $\bm{r}(0)=0\bm{i}+0\bm{j}+0\bm{k}$ and $\bm{r}(1)=\bm{i}+\bm{j}+\bm{k}$, so $A=\bm{0}$ and $B=\bm{1}$. Thus we have
+\begin{align*}
+f(B)-f(A) &= f(\bm{1})-f(\bm{0})\\
+&= (1+2+1)-0=4.
+\end{align*}
+\end{example}
+
+\bigskip
+
+\hrulefill
+
+\bigskip
+
+\begin{example}
+Suppose that the force field $\bm{F} = \nabla f$ is the gradient of the function
+\begin{align*}
+f(x,y,z) = -\frac{1}{x^2+y^2+z^2}.
+\end{align*}
+Find the work done by $\bm{F}$ in moving an object along a smooth curve $C$ joining $(1,0,0)$ to $(0,0,2)$ that does not pass through the origin.
+
+\bigskip
+
+We can use the Fundamental Theorem of Line Integrals to state that
+\begin{align*}
+\int_C \bm{F}\cdot d\bm{r} = f(0,0,2)-f(1,0,0) = -\frac{1}{4}-(-1)=\frac{3}{4}.
+\end{align*}
+\end{example}
+
+\bigskip
+
+\hrulefill
+
+\bigskip
+
+\begin{theorem}{(Conservative Fields are Gradient Fields)}
+\\
+Let $\bm{F} = M\bm{i}+N\bm{j}+P\bm{k}$ be a vector field whose components are continuous throughout an open connected region $D$ in space. Then $\bm{F}$ is conservative if and only if $\bm{F}$ is a gradient field $\nabla f$ for a differentiable function $f$.
+\end{theorem}
+
+\bigskip
+
+This theorem tells us that every conservative field is a gradient field. Thus we can use the FTLI to easily compute line integrals for conservative fields!
+
+\bigskip
+
+\hrulefill
+
+\bigskip
+
+\begin{theorem}{(Loop Property of Conservative Fields)}
+\\
+The following statements are equivalent.
+\begin{itemize}
+\item[1.] $\int_C \bm{F}\cdot d\bm{r} =0$ around every loop (that is, closed curve $C$) in $D$.
+\item[2.] The field $\bm{F}$ is conservative on $D$.
+\end{itemize}
+\end{theorem}
+
+\bigskip
+
+\hrulefill
+
+\bigskip
+
+At this point we have two primary questions to answer:
+\begin{itemize}
+\item[1.] How do we know whether a given vector field $\bm{F}$ is conservative?
+\item[2.] If $\bm{F}$ is in fact conservative, how do we find a potential function $f$?
+\end{itemize}
+
+\bigskip
+
+The first question ends up being pretty easy to answer, and the second is trickier!
+
+\bigskip
+
+\hrulefill
+
+\bigskip
+
+\begin{theorem}{(Component Test for Conservative Fields)}
+\\
+Let $\bm{F} = M(x,y,z)\bm{i}+N(x,y,z)\bm{j}+P(x,y,z)\bm{k}$ be a field on a connected and simply connected domain whose component functions have continuous first partial derivatives. Then, $\bm{F}$ is conservative if and only if
+\begin{align*}
+\frac{\partial P}{\partial y} = \frac{\partial N}{\partial z}, \ \ \frac{\partial M}{\partial z}=\frac{\partial P}{\partial x}, \ \ \frac{\partial N}{\partial x}=\frac{\partial M}{\partial y}.
+\end{align*}
+\end{theorem}
+
+\bigskip
+
+The proof of this is really just an application of the mixed derivative theorem, but we won't worry about it. Something you might find useful is the following:
+
+\bigskip
+
+\begin{center}
+\includegraphics[scale=0.8]{f_f1}
+\end{center}
+
+\bigskip
+
+\hrulefill
+
+\bigskip
+
+If we find that $\bm{F}$ is conservative, we would like to find a potential function for $\bm{F}$. This requires us to solve the equation $\nabla f=F$, or
+\begin{align*}
+\frac{\partial f}{\partial x} \bm{i}+\frac{\partial f}{\partial y} \bm{j}+\frac{\partial f}{\partial z} \bm{k} = M\bm{i}+N\bm{j}+P\bm{k}.
+\end{align*}
+This can be accomplished by integrating the three equations
+\begin{align*}
+\frac{\partial f}{\partial x} =M, \ \ \frac{\partial f}{\partial y} = N, \ \ \frac{\partial f}{\partial z} = P.
+\end{align*}
+
+\bigskip
+
+\hrulefill
+
+\bigskip
+
+\begin{example}
+Show that $\bm{F} = (2x-3)\bm{i}-z\bm{j}+(\cos(z))\bm{k}$ is not conservative.
+
+\bigskip
+
+Applying the component test, we see that
+\begin{align*}
+\frac{\partial P}{\partial y} &= \frac{\partial}{\partial y}(\cos(z))=0\\
+\frac{\partial N}{\partial z} &= \frac{\partial}{\partial z}(-z)=-1.
+\end{align*}
+Those two quantities should be equal if the field is conservative, so we have shown that $\bm{F}$ is not in fact conservative.
+\end{example}
+
+\bigskip
+
+\hrulefill
+
+\bigskip
+
+\begin{example}
+Show that $\bm{F}=(e^x\cos(y)+yz)\bm{i}+(xz-e^x\sin(y))\bm{j}+(xy+z)\bm{k}$ is conservative over its domain and find a potential function for it.
+
+\bigskip
+
+Here we have $M=e^x\cos(y)+yz$, $N=xz-e^x\sin(y)$, and $P=xy+z$. So see that
+\begin{align*}
+\frac{\partial P}{\partial y} &= x = \frac{\partial N}{\partial z}\\
+\frac{\partial M}{\partial z} &= y = \frac{\partial P}{\partial x}\\
+\frac{\partial N}{\partial x} &= -e^x\sin(y)+z = \frac{\partial M}{\partial y}.
+\end{align*}
+Therefore $\bm{F}$ is conservative. To find the potential function $f$ we must solve the equations
+\begin{align*}
+\frac{\partial f}{\partial x} &= e^x\cos(y)+yz\\
+\frac{\partial f}{\partial y} &= xz-e^x\sin(y)\\
+\frac{\partial f}{\partial z} &= xy+z.
+\end{align*}
+Integrating the first equation with respect to $x$ gives $f(x,y,z) = e^x\cos(y)+xyz+g(y,z)$. Now we will calculate $\partial f/\partial y$ from this equation and compare it to the second equation above. Doing this gives
+\begin{align*}
+-e^x\sin(y)+xz+\frac{\partial g}{\partial y} = xz-e^x\sin(y),
+\end{align*}
+meaning $\frac{\partial g}{\partial y}=0$. This means $g$ is a function of only $z$, not $y$ and $z$. So we have
+\begin{align*}
+f(x,y,z) = e^x\cos(y)+xyz+h(z).
+\end{align*}
+Now finding $\partial f/\partial z$ from this and comparing that to the third equation above gives
+\begin{align*}
+xy+\frac{dh}{dz} = xy+z \Rightarrow \frac{dh}{dz}=z.
+\end{align*}
+Thus $h(z) = \frac{z^2}{2}+C$ and we conclude that
+\begin{align*}
+f(x,y,z) = e^x\cos(y)+xyz+\frac{z^2}{2}+C.
+\end{align*}
+\end{example}
+
+\newpage
+
+% --------------------------------------------------------------
+%                         Sec 16.4
+% --------------------------------------------------------------
+
+\section{Green's Theorem in the Plane (16.4)}
+
+For this section it will help us to visualize all the vector fields as fluid fields. That is, imaging that a fluid is flowing over the plane in a direction dictated by the vector field.
+
+\bigskip
+
+Suppose that $\bm{F}=M(x,y)\bm{i}+N(x,y)\bm{j}$ is the velocity field of a fluid flowing in the plane and let the partial derivatives of $M$ and $N$ be continuous at each point of a region $R$. Let $(x,y)$ be a point in $R$ and let $A$ be a small rectangle with one corner at $(x,y)$.
+
+\bigskip
+
+\begin{center}
+\includegraphics[scale=0.8]{f_f2}
+\end{center}
+
+\bigskip
+
+The rate at which fluid leaves the rectangle (flow rate) across the bottom edge is approximately
+\begin{align*}
+\bm{F}(x,y)\cdot(-\bm{j})\delta x = -N(x,y)\Delta x,
+\end{align*}
+which is the scalar component of the velocity at $(x,y)$ in the direction of the outward normal times the length of the segment. (This makes sense unit-wise, since if velocity is in $m/s$ then flow rate is $m^2/s$). We could do this for each side of the square to get
+\begin{align*}
+\text{Top:} \ \ \ \ &\bm{F}(x,y+\Delta y)\cdot\bm{j}\Delta x = N(x,y+\Delta y)\Delta x\\
+\text{Bottom:} \ \ \ \ &\bm{F}(x,y)\cdot(-\bm{j})\Delta x = -N(x,y+\Delta y)\Delta x\\
+\text{Right:} \ \ \ \ &\bm{F}(x+\Delta x,y)\cdot\bm{i}\Delta y = M(x+\Delta x,y)\Delta y\\
+\text{Left:} \ \ \ \ &\bm{F}(x,y)\cdot(-\bm{i})\Delta y = -M(x,y)\Delta y\\
+\end{align*}
+Now if we want to estimate the rate at which fluid leaves the rectangle $A$ we would sum up all of he above terms. First summing the top and bottom gives
+\begin{align*}
+(N(x,y+\delta y)-N(x,y))\Delta x \approx \left(\frac{\partial N}{\partial y} \Delta y\right)\Delta x
+\end{align*}
+and the left and right gives
+\begin{align*}
+(M(x+\Delta x,y)-M(x,y))\Delta y \approx \left(\frac{\partial M}{\partial x} \Delta x\right)\Delta y.
+\end{align*}
+Finally adding these gives the total flow rate for this rectangle $A$:
+\begin{align*}
+\left(\frac{\partial M}{\partial x}+\frac{\partial N}{\partial y}\right)\Delta x\Delta y.
+\end{align*}
+Dividing by the area gives the total flow rate per unit area
+\begin{align*}
+\frac{\partial M}{\partial x}+\frac{\partial N}{\partial y}.
+\end{align*}
+Finally, letting $\Delta x$ and $\Delta y$ approach zero gives the flow rate or flux density of $\bm{F}$ at the point $(x,y)$. The mathematical term for this is \textbf{divergence}.
+
+\bigskip
+
+\begin{definition}
+The \textbf{divergence (flux density)} of a vector field $\bm{F} = M\bm{i}+N\bm{j}$ at the point $(x,y)$ is
+\begin{align*}
+\text{div}\bm{F}=\frac{\partial M}{\partial x}+\frac{\partial N}{\partial y}.
+\end{align*}
+\end{definition}
+
+\bigskip
+
+\hrulefill
+
+\bigskip
+
+When given a plot of a vector field, you should get an intuitive feel for divergence by doing the following. Imagine drawing a tiny box around the point of interest in the plane. If you picture fluid flowing according to the vector field and your box will either fill up or empty with fluid after a certain amount of time, the divergence of the vector field is positive or negative, respectively. If the box will keep the same amount of fluid, the divergence is zero.
+
+\bigskip
+
+\hrulefill
+
+\bigskip
+
+\begin{example}
+
+\bigskip
+
+\begin{center}
+\includegraphics[scale=0.8]{f_f3}
+\end{center}
+
+\bigskip
+
+Find the divergence of the given vector fields and interpret its physical meaning.
+\begin{itemize}
+\item[a.] $\bm{F}(x,y) = cx\bm{i}+cy\bm{j}$
+\item[b.] $\bm{F}(x,y) = -cy\bm{i}+cx\bm{j}$
+\item[c.] $\bm{F}(x,y) = y\bm{j}$
+\item[d.] $\bm{F}(x,y) = -\frac{y}{x^2+y^2}\bm{i}+\frac{x}{x^2+y^2}\bm{j}$
+\end{itemize}
+
+\hrulefill
+
+\begin{itemize}
+\item[a.] Here we have
+\begin{align*}
+\text{div} \bm{F} = \frac{\partial}{\partial x} (cx)+\frac{\partial}{\partial y}(cy) =2c.
+\end{align*}
+If $c>0$ the fluid is uniformly expanding. If $c<0$, the fluid is uniformly compressing.
+\item[b.] Here we have
+\begin{align*}
+\text{div} \bm{F} = \frac{\partial}{\partial x} (-cy)+\frac{\partial}{\partial y}(cx) =0.
+\end{align*}
+The fluid is neither expanding nor compressing.
+\item[c.] Here we have
+\begin{align*}
+\text{div} \bm{F} = \frac{\partial}{\partial x} (y)=0
+\end{align*}
+The fluid is neither expanding nor compressing.
+\item[d.] Here we have
+\begin{align*}
+\text{div} \bm{F} = \frac{\partial}{\partial x} \left(-\frac{y}{x^2+y^2}\right)+\frac{\partial}{\partial y}\left(\frac{x}{x^2+y^2}\right) = \frac{2xy}{(x^2+y^2)^2}-\frac{2xy}{(x^2+y^2)^2}=0.
+\end{align*}
+The fluid is neither expanding nor compressing.
+\end{itemize}
+
+\end{example}
+
+\bigskip
+
+\hrulefill
+
+\bigskip
+
+If we return to our derivation of the divergence above and instead find the flow rate along the sides of the box instead of out of the box, we can follow exactly the same procedure to get the following.
+
+\bigskip
+
+\begin{definition}
+The \textbf{circulation density} of a vector field $\bm{F}=M\bm{i}+N\bm{j}$ at the point $(x,y)$ is the scalar expression
+\begin{align*}
+\frac{\partial N}{\partial x}-\frac{\partial M}{\partial y}.
+\end{align*}
+\end{definition}
+
+\bigskip
+
+This circulation density is actually the $k$-component of a vector field called the \textbf{curl}, which we'll learn about later.
+
+\bigskip
+
+\hrulefill
+
+\bigskip
+
+When given a plot of a vector field, to find the curl picture taking a paddle wheel and placing it in the fluid with its axis at the point in question. If the paddle wheel starts spinning, the curl there is nonzero. Specifically, if the wheel starts spinning counterclockwise when viewed from above then the curl is positive. If the wheel spins clockwise the curl is negative.
+
+\bigskip
+
+\hrulefill
+
+\bigskip
+
+\begin{example}
+
+\bigskip
+
+\begin{center}
+\includegraphics[scale=0.8]{f_f3}
+\end{center}
+
+\bigskip
+
+Find the divergence of the given vector fields and interpret its physical meaning.
+\begin{itemize}
+\item[a.] $\bm{F}(x,y) = cx\bm{i}+cy\bm{j}$
+\item[b.] $\bm{F}(x,y) = -cy\bm{i}+cx\bm{j}$
+\item[c.] $\bm{F}(x,y) = y\bm{j}$
+\item[d.] $\bm{F}(x,y) = -\frac{y}{x^2+y^2}\bm{i}+\frac{x}{x^2+y^2}\bm{j}$
+\end{itemize}
+
+\hrulefill
+
+\begin{itemize}
+\item[a.] Here we have
+\begin{align*}
+\frac{\partial}{\partial x} (cy)-\frac{\partial}{\partial y}(cx) = 0.
+\end{align*}
+The fluid is not circulating.
+\item[b.] Here we have
+\begin{align*}
+\frac{\partial}{\partial x} (cx)-\frac{\partial}{\partial y}(-cy) =2c.
+\end{align*}
+The fluid is rotating at every point. If $c>0$ the rotation is counterclockwise, if $c<0$ the rotation is clockwise.
+\item[c.] Here we have
+\begin{align*}
+\text{div} \bm{F} = -\frac{\partial}{\partial y} (y)=-1.
+\end{align*}
+The circulation density is constant and negative. Any paddle wheel in the fluid will spin clockwise and the rate of rotation is the same at each point.
+\item[d.] Here we have
+\begin{align*}
+\text{div} \bm{F} = \frac{\partial}{\partial x} \left(\frac{x}{x^2+y^2}\right)-\frac{\partial}{\partial y}\left(-\frac{y}{x^2+y^2}\right) = \frac{y^2-x^2}{(x^2+y^2)^2}-\frac{y^2-x^2}{(x^2+y^2)^2}=0.
+\end{align*}
+This is a weird one. It looks like the paddle wheel would rotate, but since the field spins more strongly close to the origin here the paddle would actually stay stationary! This intuition doesn't hold at the origin, but this field isn't even defined at the origin.
+\end{itemize}
+\end{example}
+
+\bigskip
+
+\hrulefill
+
+\bigskip
+
+We're now ready to discuss Green's Theorems. These two theorems are actually entirely equivalent, but it can be helpful to view them in both ways.
+
+\bigskip
+
+\begin{theorem}{Green's Theorem (Flux-Divergence or Normal Form)}
+Let $C$ be a piecewise smooth, simple closed curve enclosing a region $R$ in the plane. Let $\bm{F}=M\bm{i}+N\bm{j}$ be a vector field with $M$ and $N$ having continuous first partial derivatives in an open region containing $R$. Then the outward flux of $\bm{F}$ across $C$ equals the double integral of $\text{div}\bm{F}$ over the region $R$ enclosed by $C$.
+\begin{align*}
+\oint_C \bm{F}\cdot\bm{n}ds = \oint_C Mdy-Ndx = \int\int_R \left(\frac{\partial M}{\partial x} + \frac{\partial N}{\partial y}\right) dxdy
+\end{align*}
+\end{theorem}
+
+\bigskip
+
+This theorem states that (under suitable conditions) the outward flux of a vector field across a closed, simple curve in the plane is equal to the double integral of the divergence of the field over the region enclosed by the curve.
+
+\bigskip
+
+\hrulefill
+
+\bigskip
+
+There is a bit more intuition to be found from the other form of Green's Theorem.
+
+\bigskip
+
+\begin{theorem}{Green's Theorem (Circulation-Curl or Tangential Form)}
+Let $C$ be a piecewise smooth, simple closed curve enclosing a region $R$ in the plane. Let $\bm{F}=M\bm{i}+N\bm{j}$ be a vector field with $M$ and $N$ having continuous first partial derivatives in an open region containing $R$. Then the counterclockwise circulation of $\bm{F}$ around $C$ equals the double integral of the circulation density over $R$.
+\begin{align*}
+\oint_C \bm{F}\cdot\bm{T} ds = \oint_C Mdx+Ndy = \int \int_R \left(\frac{\partial N}{\partial x}-\frac{\partial M}{\partial y}\right)dxdy.
+\end{align*}
+\end{theorem}
+
+\bigskip
+
+This form of the theorem states that the circulation of the vector field on the boundary of our region is equal to the sum of the circulation densities at each point within our region. To help visualize this, imaging our region is a perfect square like the following (change name of region to $R$).
+
+\bigskip
+
+\begin{center}
+\includegraphics[scale=0.8]{f_f4}
+\end{center}
+
+\bigskip
+
+Now imaging splitting up the region into a number of microscopic loops (do this a few times).
+
+\bigskip
+
+\begin{center}
+\includegraphics[scale=0.8]{f_f5}
+\end{center}
+
+\bigskip
+
+Notice that the interior loops cancel, the arrow are pointing in opposite directions. Thus the only part of the circulation remaining is on the exterior of the region. This is exactly what Green's Theorem states! We could think of something similar for the first form of Green's theorem using divergence instead, but I think this is easier to visualize.
+
+\bigskip
+
+\hrulefill
+
+\bigskip
+
+\begin{example}
+Verify both forms of Green's Theorem for the vector field
+\begin{align*}
+\bm{F}(x,y)=(x-y)\bm{i}+x\bm{j}
+\end{align*}
+and the region $R$ bounded by the unit circle
+\begin{align*}
+C: \ \ \bm{r}(t)=\cos(t)\bm{i}+\sin(t)\bm{j}, \ \ 0\leq t\leq 2\pi.
+\end{align*}
+
+\bigskip
+
+We'll start with the first form of Green's Theorem. First see that $\bm{F}(\bm{r}(t)) = (\cos(t)-\sin(t))\bm{i} + \cos(t)\bm{j}$. This means $M=\cos(t)-\sin(t)$ and $N=\cos(t)$. Thus we have
+\begin{align*}
+\frac{\partial M}{\partial x} = 1, \ \ \frac{\partial M}{\partial y} = -1, \ \ \frac{\partial N}{\partial x} = 1, \ \ \frac{\partial N}{\partial y} = 0.
+\end{align*}
+We also see that
+\begin{align*}
+dx=d(\cos(t))=-\sin(t)dt, \ \ dy=d(\sin(t))=\cos(t)dt.
+\end{align*}
+Putting this together with the equation from the first form of Green's Theorem gives
+\begin{align*}
+\oint_C Mdy-Ndx &= \int_0^{2pi} (\cos(t)-\sin(t))(\cos(t)dt)-(\cos(t))(-\sin(t)dt)\\
+&=\int_0^{2\pi} \cos^2(t)dt = \pi
+\end{align*}
+and
+\begin{align*}
+\int\int_R \left(\frac{\partial M}{\partial x}+\frac{\partial N}{\partial y}\right) &= \int\int_R (1+0)dxdy\\
+&=\int\int_R dxdy = \pi.
+\end{align*}
+
+\smallskip
+
+For the second form of Green's Theorem we get
+\begin{align*}
+\oint_C Mdx+Ndy &= \int_0^{2\pi} (\cos(t)-\sin(t))(-\sin(t)dt)+(\cos(t))(\cos(t)dt)\\
+&=\int_0^{2\pi} (-\sin(t)\cos(t)+1)dt=2\pi
+\end{align*}
+and
+\begin{align*}
+\int\int_R \left(\frac{\partial N}{\partial x}-\frac{\partial M}{\partial y}\right)dxdy &= \int\int_R (1-(-1))dxdy\\
+&= 2\int\int_R dxdy = 2\pi.
+\end{align*}
+\end{example}
+
+\bigskip
+
+\hrulefill
+
+\bigskip
+
+There are many times that a line integral over a curve $C$ can be quite difficult. For instance, when $C$ is defined piecewise it can be a nightmare splitting up the integral into each of the different pieces. Fortunately, Green's Theorem gives us a way around this.
+
+\begin{example}
+Evaluate the line integral
+\begin{align*}
+\oint_C xydy-y^2dx
+\end{align*}
+where $C$ is the square cut from the first quadrant by the lines $x=1$ and $y=1$.
+
+\bigskip
+
+Either form of Green's Theorem will allow us to transform this line integral into a double integral. Using the first form with $M=xy$, $N=y^2$ gives
+\begin{align*}
+\oint_C xydy-y^2dx &= \int\int_R \left(\frac{\partial M}{\partial x}+\frac{\partial N}{\partial y}\right)dxdy\\
+&= \int_0^1\int_0^1 (y+2y)dxdy\\
+&= \int_0^1 \int_0^1 3ydxdy\\
+&= \int_0^1\left[3xy\right]_{x=0}^{x=1} dy\\
+&= \int_0^1 3ydy\\
+&= \left[\frac{3}{2}y^2\right]_0^1\\
+&= \frac{3}{2}.
+\end{align*}
+\end{example}
+
+\bigskip
+
+\hrulefill
+
+\bigskip
+
+\begin{example}
+Calculate the outward flux of the vector field $\bm{F}(x,y)=x\bm{i}+y^2\bm{j}$ across the square bounded by the lines $x=\pm 1$ and $y=\pm 1$.
+
+\bigskip
+
+Recall that the flux is given by $\oint_C \bm{F}\cdot\bm{n}ds = \oint_C Mdy-Ndx$. Using Green's Theorem gives
+\begin{align*}
+\oint_C \bm{F}\cdot\bm{n}ds &= \int\int_R \left(\frac{\partial M}{\partial x} + \frac{\partial N}{\partial y}\right)dxdy\\
+&=\int_{-1}^1\int_{-1}^1 (1+2y)dxdy\\
+&=\int_{-1}^1 \left[x+2xy\right]_{x=-1}^{x=1}dy\\
+&=\int_{-1}^1 (2+4y)dy\\
+&=\left[ 2y+2y^2\right]_{-1}^1\\
+&=4.
+\end{align*}
+\end{example}
+
+\newpage
+
+% --------------------------------------------------------------
+%                         Sec 16.5
+% --------------------------------------------------------------
+
+\section{Surfaces and Area (16.5)}
+
+Recall that we know how to parametrize a curve in either 2 or 3 dimensional space. We map a single parameter to a two (or three) dimensional vector. We will now look at parametrizing a surface in space. Since a surface is two-dimensional, we will need two parameters to describe the surface.
+
+\bigskip
+
+\begin{definition}
+A \textbf{parametrization} of a surface is a continuous, one-to-one vector function
+\begin{align*}
+\bm{r}(u,v) = f(u,v)\bm{i}+g(u,v)\bm{j}+h(u,v)\bm{k}
+\end{align*}
+along with the domain $R$ in the $uv$-plane. We call the range of $\bm{r}$ the \textbf{surface} $S$, $u$ and $v$ the \textbf{parameters} and $R$ the \textbf{parameter domain}.
+\end{definition}
+
+\bigskip
+
+\hrulefill
+
+\bigskip
+
+Finding parametrizations can be difficult. It might be useful to start with something like $\bm{r}(x,y,z) = \langle x,y,z\rangle$ and then replace one of the variables using what we know. This can often involve the use of cylindrical or spherical coordinates.
+
+\bigskip
+
+\hrulefill
+
+\bigskip
+
+\begin{example}
+Find a parametrization of the cone
+\begin{align*}
+z=\sqrt{x^2+y^2}, \ \ 0\leq z \leq 1.
+\end{align*}
+
+\bigskip
+
+We'll start with $\bm{r}(x,y,z) = \langle x,y,z\rangle$. This problem is set up well to use cylindrical coordinates, so note that we have
+\begin{align*}
+x&=r\cos(\theta)\\
+y&=r\sin(\theta)\\
+z&=\sqrt{x^2+y^2}=r.
+\end{align*}
+Now we need to consider the parameter domain. Since we are told that $0\leq z \leq 1$ we have $0\leq r \leq 1$ and since we have the full cone we need $0\leq \theta \leq 2\pi$. Thus our parametrization is
+\begin{align*}
+\bm{r}(u,v) = \langle r\cos(\theta),r\sin(\theta), r\rangle, \ \ 0\leq r \leq 1, \ 0\leq \theta \leq 2\pi.
+\end{align*}
+\end{example}
+
+\bigskip
+
+\hrulefill
+
+\bigskip
+
+\begin{example}
+Find a parametrization of the sphere $x^2+y^2+z^2=a^2$.
+
+\bigskip
+
+It makes sense to use spherical coordinates here. We know that moving between rectangular and spherical coordinates for a sphere of radius $r$ gives
+\begin{align*}
+x&=a\sin(\phi)\cos(\theta)\\
+y&=a\sin(\phi)\sin(\theta)\\
+z&=a\cos(\phi).
+\end{align*}
+Now for the parameter domain we need $0\leq \phi \leq \pi$ and $0\leq \theta \leq 2\pi$. Thus our parametrization is
+\begin{align*}
+\bm{r}(\phi,\theta) = (a\sin(\phi)\cos(\theta))\bm{i}+(a\sin(\phi)\sin(\theta))\bm{j}+(a\cos(\phi))\bm{k}, \ \ 0\leq \phi \leq \pi, \ 0\leq \theta \leq 2\pi.
+\end{align*}
+\end{example}
+
+\bigskip
+
+\hrulefill
+
+\bigskip
+
+\begin{example}
+Find a parametrization of the cylinder
+\begin{align*}
+x^2+(y-3)^2=9, \ \ 0\leq z \leq 5.
+\end{align*}
+
+\bigskip
+
+We need to use cylindrical coordinates, but we need to do a bit of work first. Starting with our equation for the cylinder we see
+\begin{align*}
+x^2+(y-3)^2=9 &\Rightarrow x^2+y^2-6y+9=9\\
+&\Rightarrow r^2-6r\sin(\theta)=0\\
+&\Rightarrow r=6\sin(\theta), \ 0\leq \theta \leq \pi.
+\end{align*}
+So now we see that any point on the cylinder must satisfy
+\begin{align*}
+x&=r\cos(\theta)=6\sin(\theta)\cos(\theta)=3\sin(2\theta)\\
+y&=r\sin(\theta)=6\sin^2(\theta)\\
+z&=z.
+\end{align*}
+Now for the parameter domain, note that because of the form of $x$ we only need $0\leq \theta \leq \pi$. We also need $0\leq z\leq 5$, so our parametrization is
+\begin{align*}
+\bm{r}(\theta,z) = \langle 3\sin(2\theta), 6\sin^2(\theta), z \rangle, \ \ 0\leq \theta \leq \pi, \ 0\leq z \leq 5.
+\end{align*}
+\end{example}
+
+\bigskip
+
+\hrulefill
+
+\bigskip
+
+Suppose we want to find the area of a curved surface $S$ given its parametrization $\bm{r}(u,v)$. If the surface were perfectly flat we could just set up a double integral of the region in which the surface is defined. But since the region is not, we need to do a little more work.
+
+\bigskip
+
+Let 
+\begin{align*}
+\bm{r}_u &= \frac{\partial \bm{r}}{\partial u}\\
+\bm{r}_v &= \frac{\partial \bm{r}}{\partial v}.
+\end{align*}
+
+\bigskip
+
+\begin{definition}
+A parametrized surface $\bm{r}(u,v) = f(u,v) \bm{i}+g(u,v)\bm{j}+h(u,v)\bm{k}$ is \textbf{smooth} if $\bm{r}_u$ and $\bm{r}_v$ are continuous and $\bm{r}_u \times \bm{r}_v$ is never zero on the interior of the parameter domain. 
+\end{definition}
+
+\bigskip
+
+Essentially this definition just states that at each point on the surface we have a nonzero normal vector, which means we have a tangent plane. Now we know the area of a rectangle $A$ will map to a curved patch on the surface $S$. Let the area of of that curved patch be $\Delta \sigma_{uv}$.
+
+\bigskip
+
+\begin{center}
+\includegraphics[scale=0.7]{f_f6}
+\end{center}
+
+\bigskip
+
+We can approximate the are of this curved patch with a parallelogram given by the tangent plane at point $P_0$ with side lengths $\Delta u$ and $\Delta v$.
+
+\bigskip
+
+\begin{center}
+\includegraphics[scale=0.8]{f_f7}
+\end{center}
+
+\bigskip
+
+The area of this parallelogram is
+\begin{align*}
+||\Delta u \bm{r}_u \times \Delta v \bm{r}_v|| = ||\bm{r}_u \times \bm{r}_v|| \Delta u \Delta v.
+\end{align*}
+Adding up all of these small patches approximates the surface area of $S$, so we have
+\begin{align*}
+\text{SA}(S) \approx \sum_n ||\bm{r}_u\times \bm{r}_v|| \Delta u \Delta v.
+\end{align*}
+Now letting the number of patches approach infinity gives the following definition.
+
+\bigskip
+
+\begin{definition}
+The \textbf{area} of the smooth surface
+\begin{align*}
+\bm{r}(u,v) = f(u,v)\bm{i}+g(u,v)\bm{j}+h(u,v)\bm{k}, \ \ a\leq u \leq b, \ c\leq v \leq d
+\end{align*}
+is
+\begin{align*}
+A = \int\int_R ||\bm{r}_u \times \bm{r}_v||dA = \int_c^d \int_a^b ||\bm{r}_u \times \bm{r}_v|| dudv.
+\end{align*}
+\end{definition}
+
+\bigskip
+
+\hrulefill
+
+\bigskip
+
+You will also often see the surface area written as
+\begin{align*}
+\int\int_S d\sigma
+\end{align*}
+where $d\sigma = ||\bm{r}_u\times \bm{r}_v||dudv$.
+
+\bigskip
+
+\hrulefill
+
+\bigskip
+
+\begin{example}
+Find the surface area of the cone from our first example.
+
+\bigskip
+
+Recall we found that a parametrization for the cone is
+\begin{align*}
+\bm{r}(r,\theta) = \langle r\cos(\theta), r\sin(\theta), r \rangle.
+\end{align*}
+So we must find $||\bm{r}_r \times \bm{r}_\theta||$. First see that $\bm{r}_r = \langle \cos(\theta), \sin(\theta), 1 \rangle$ and $\bm{r}_\theta = \langle -r\sin(\theta), r\cos(\theta), 0 \rangle$. So we have
+\begin{align*}
+\bm{r}_r \times \bm{r}_\theta &= \begin{vmatrix} \bm{i} & \bm{j} & \bm{k} \\ \cos(\theta) & \sin(\theta) & 1 \\ -r\sin(\theta) & r\cos(\theta) & 0 \end{vmatrix}\\
+&= -r\cos(\theta)\bm{i}-r\sin(\theta)\bm{j}+r\bm{k}.
+\end{align*}
+Thus we have $||\bm{r}_r \times \bm{r}_\theta|| = \sqrt{r^2\cos^2(\theta) + r^2\sin^2(\theta)+r^2} = \sqrt{2} r$. Finally then the area of the cone is
+\begin{align*}
+A &= \int_0^{2\pi}\int_0^1 ||\bm{r}_r\times \bm{r}_\theta|| drd\theta\\
+&= \int_0^{2\pi}\int_0^1 \sqrt{2}r drd\theta\\
+&= \int_0^{2\pi} \left[\frac{\sqrt{2}r^2}{2}\right]_0^1 d\theta\\
+&=\int_0^{2\pi} \frac{\sqrt{2}}{2} d\theta\\
+&= \sqrt{2} \pi.
+\end{align*}
+\end{example}
+
+\bigskip
+
+\hrulefill
+
+\bigskip
+
+\begin{example}
+Find the surface area of a sphere of radius $a$.
+
+\bigskip
+
+We found a parametrization of this sphere to be
+\begin{align*}
+\bm{r}(\phi,\theta) = (a\sin(\phi)\cos(\theta))\bm{i}+(a\sin(\phi)\sin(\theta))\bm{j}+(a\cos(\phi))\bm{k}, \ \ 0\leq \phi \leq \pi, \ 0\leq \theta \leq 2\pi.
+\end{align*}
+First we have $\bm{r}_\phi = a\cos(\phi)\cos(\theta)\bm{i}+a\cos(\phi)\sin(\theta)\bm{j}-a\sin(\phi)\bm{k}$ and $\bm{r}_\theta = -a\sin(\phi)\sin(\theta)\bm{i}+a\sin(\phi)\cos(\theta)\bm{j}+0\bm{k}$
+\begin{align*}
+\bm{r}_r \times \bm{r}_\theta &= \begin{vmatrix} \bm{i} & \bm{j} & \bm{k} \\ a\cos(\phi)\cos(\theta) & a\cos(\phi)\sin(\theta) & -a\sin(\phi) \\ -a\sin(\phi)\sin(\theta) & a\sin(\phi)\cos(\theta) & 0 \end{vmatrix}\\
+&= a^2\sin^2(\phi)\cos(\theta)\bm{i}+a^2\sin^(\phi)\sin(\theta)\bm{j}+a^2\sin(\phi)\cos(\theta)\bm{k}.
+\end{align*}
+Therefore we find
+\begin{align*}
+||\bm{r}_r\times\bm{r}_\theta|| &= \sqrt{a^4\sin^4(\phi)\cos^2(\theta)+a^4\sin^4(\phi)\sin^2(\theta)+a^4\sin^2(\phi)\cos^2(\phi)}\\
+&= \sqrt{a^4\sin^4(\phi)+a^4\sin^2(\phi)\cos^2(\phi)}\\
+&=\sqrt{a^4\sin^2(\phi)}\\
+&= a^2\sin(\phi)
+\end{align*}
+where the last line holds since $0\leq \phi \leq \pi$. So the area of the sphere is
+\begin{align*}
+A &= \int_0^{2\pi}\int_0^\pi a^2\sin(\phi)d\phi d\theta\\
+&= \int_0^{2\pi} \left[-a^2\cos(\phi)\right]_0^\pi d\theta\\
+&=\int_0^{2\pi}2a^2d\theta\\
+&= 4\pi a^2.
+\end{align*}
+\end{example}
+
+\newpage
+
+% --------------------------------------------------------------
+%                         Sec 16.6
+% --------------------------------------------------------------
+
+\section{Surface Integrals (16.6)}
+
+We will now extend the concept of line integrals to the concept of surface integrals. Recall for a line integral we are integrating a function of two dimensions over a curve in the $xy$-plane (recall the animation we used as guidance). With surface integrals, we are instead integrating a function of three dimensions over a surface in space.
+
+\bigskip
+
+Assume that the surface $S$ is defined parametrically on a region $R$ in the $uv$-plane:
+\begin{align*}
+\bm{r}(u,v) = f(u,v)\bm{i}+g(u,v)\bm{j}+h(u,v)\bm{k}, \ (u,v)\in R.
+\end{align*}
+Just like last chapter, we will subdivide $R$ into a number of patches and estimate the area of each of the patch as
+\begin{align*}
+\Delta \sigma_{uv} = ||\bm{r}_u\times\bm{r}_v||dudv.
+\end{align*}
+
+\bigskip
+
+\begin{center}
+\includegraphics[scale=0.8]{f_f8}
+\end{center}
+
+\bigskip
+
+Now the integral of a function $G(x,y,z)$ over the surface $S$ is estimated by
+\begin{align*}
+\sum_{k=1}^n G(x_k,y_k,z_k)\Delta \sigma_k
+\end{align*}
+where $(x_k,y_k,z_k)$ is some point in the $k^{\text{th}}$ patch. Finally taking a limit as the number of patches approaches infinity gives the \textbf{surface integral of} $G$ \textbf{over the surface} $S$:
+\begin{align*}
+\int\int_S G(x,y,z)d\sigma = \lim_{n\to\infty} \sum_{k=1}^n G(x_k,y_k,z_k) \Delta \sigma_k.
+\end{align*}
+
+Computing this integral depends on how the surface is defined.
+
+\bigskip
+
+\hrulefill
+
+\bigskip
+
+\begin{definition}
+\begin{itemize}
+\item For a smooth surface $S$ defined \textbf{parametrically} as $\bm{r}(u,v) = f(u,v)\bm{i}+g(u,v)\bm{j}+h(u,v)\bm{k}, \ (u,v)\in R$ and a continuous function $G(x,y,z)$ defined on $S$, the surface integral of $G$ over $S$ is given by the double integral over $R$,
+\begin{align*}
+\int\int_S G(x,y,z)d\sigma = \int\int_R G(f(u,v),g(u,v),h(u,v)) ||\bm{r}_u\times\bm{r}_v||dudv.
+\end{align*}
+\item For a surface $S$ given \textbf{implicitly} by $F(x,y,z)=c$, where $F$ is a continuously differentiable function, which $S$ lying above its closed and bounded shadow region $R$ in the coordinate plane beneath it, the surface integral of the continuous function $G$ over $S$ is given by the double integral over $R$,
+\begin{align*}
+\int\int_S G(x,y,z)d\sigma = \int\int_R G(x,y,z) \frac{||\nabla F||}{||\nabla F\cdot\bm{p}||} dA,
+\end{align*}
+where $\bm{p}$ is a unit vector normal to $R$ and $\nabla F \cdot \bm{p} \neq 0$.
+\item For a surface integral given \textbf{explicitly} as the graph of $z=f(x,y)$, where $f$ is a continuously differentiable function over a region $R$ in the $xy$-plane, the surface integral of the continuous function $G$ over $S$ is given by the double integral over $R$,
+\begin{align*}
+\int\int_S G(x,y,z)d\sigma = \int\int_R G(x,y,f(x,y)) \sqrt{f_x^2+f_y^2+1}dxdy.
+\end{align*}
+\end{itemize}
+\end{definition}
+
+\bigskip
+
+\hrulefill
+
+\bigskip
+
+\begin{example}
+Integrate $G(x,y,z) = x^2$ over the cone $z=\sqrt{x^2+y^2}, \ 0\leq z \leq 1$.
+
+\bigskip
+
+Recall that we found a parametrization of this surface in the previous section, which was
+\begin{align*}
+\bm{r}(r,\theta) = \langle r\cos(\theta),r\sin(\theta),r\rangle, \ \ 0\leq r\leq 1, \ 0\leq \theta \leq 2\pi.
+\end{align*}
+We also found that $||\bm{r}_r\times \bm{r}_\theta|| = \sqrt{2}r$. So our surface integral here is
+\begin{align*}
+\int\int_S x^2d\sigma &= \int_0^{2\pi}\int_0^1 (r^2\cos^2(\theta))(\sqrt{2}r)drd\theta\\
+&= \sqrt{2}\int_0^{2\pi}\int_0^1 r^3\cos^2(\theta)drd\theta\\
+&= \frac{\sqrt{2}}{4} \int_0^{2\pi} \cos^2(\theta)d\theta\\
+&= \frac{\sqrt{2}}{4}\left[\frac{\theta}{2}+\frac{1}{4}\sin(2\theta)\right]_0^{2\pi}\\
+&= \frac{\pi\sqrt{2}}{4}.
+\end{align*}
+\end{example}
+
+\bigskip
+
+\hrulefill
+
+\bigskip
+
+\begin{example}
+Integrate $G(x,y,z) = z$ over the sphere of radius $1$.
+
+\bigskip
+
+Recall that we found a parametrization of this surface in the previous section, which was
+\begin{align*}
+\bm{r}(\phi,\theta) = \langle \sin(\phi)\cos(\theta),\sin(\phi)\sin(\theta),\cos(\phi)\rangle, \ \ 0\leq \phi\leq \pi, \ 0\leq \theta \leq 2\pi.
+\end{align*}
+We also found that $||\bm{r}_r\times \bm{r}_\theta|| = 1^2\sin(\phi)$. So our surface integral here is
+\begin{align*}
+\int\int_S z d\sigma &= \int_0^{2\pi}\int_0^\pi \cos(\phi)\sin(\phi)d\phi d\theta\\
+&= 0.
+\end{align*}
+Could you explain intuitively why this answer makes sense?
+\end{example}
+
+\bigskip
+
+\hrulefill
+
+\bigskip
+
+\begin{example}
+Integrate $G(x,y,z) = xyz$ over the surface of the cube cut from the first octant by the planes $x=1, y=1$ and $z=1$.
+
+\bigskip
+
+\begin{center}
+\includegraphics[scale=0.8]{f_f9}
+\end{center}
+
+\bigskip
+
+This full integral will be a sum of six integrals, one corresponding to each side. However, we can ignore the integrals on the axes since these give $G(x,y,z)=0$. So we have instead the following:
+\begin{align*}
+\int\int_S xyz d\sigma = \int\int_A xyzd\sigma+\int\int_B xyzd\sigma+\int\int_C xyzd\sigma.
+\end{align*}
+Now by symmetry we only need to compute one of these integrals and then multiply by three. We will choose side $A$. Here the surface is given by $z=1$ with $0\leq x\leq 1$, $0\leq y \leq 1$, so we can use our integral where the surface is given explicitly to state
+\begin{align*}
+\int\int_S xyzd\sigma &= 3\int\int_A xyzd\sigma\\
+&= 3 \int_0^1\int_0^1 xy \sqrt{0^2+0^2+1}dxdy\\
+&= 3 \int_0^1\int_0^1xydxdy\\
+&= \frac{3}{2} \int_0^1 ydy\\
+&= \frac{3}{4}.
+\end{align*}
+\end{example}
+
+\bigskip
+
+\hrulefill
+
+\bigskip
+
+\begin{definition}
+A smooth surface $S$ is \textbf{orientable} if it is possible to define a field $\bm{n}$ of unit normal vectors on $S$ that varies continuously with position.
+\end{definition}
+
+\bigskip
+
+All surfaces we will deal with in this class are orientable. (Give an example of each though, using a sphere as orientable and a mobius band as non-orientable.)
+
+\bigskip
+
+\hrulefill
+
+\bigskip
+
+Recall that the flux of a two-dimensional field $\bm{F}$ across a plane curve $C$ is given by
+\begin{align*}
+\int_C \bm{F}\cdot\bm{n}ds.
+\end{align*}
+That should make the following believable.
+
+\bigskip
+
+\begin{definition}
+The \textbf{flux} of a three-dimensional vector field $\bm{F}$ across an oriented surface $S$ in the direction of $\bm{n}$ is
+\begin{align*}
+\int\int_S \bm{F}\cdot\bm{n}d\sigma.
+\end{align*}
+\end{definition}
+
+\bigskip
+
+For intuition, imagine the field $\bm{F}$ is the velocity field of a three dimensional fluid flow. Then the flux of $\bm{F}$ across $S$ is the net rate at which fluid is crossing $S$ in the chosen positive direction.
+
+\bigskip
+
+\hrulefill
+
+\bigskip
+
+\begin{example}
+Find the flux of $\bm{F} = yz\bm{i}+x\bm{j}-z^2\bm{k}$ through the parabolic cylinder $y=x^2, 0 \leq x \leq 1, 0\leq z\leq 4$, in the direction $\bm{n}$ indicated in the following picture.
+
+\bigskip
+
+\begin{center}
+\includegraphics[scale=0.8]{f_f10}
+\end{center}
+
+\bigskip
+
+One of the easiest parametrizations here is $\bm{r}(x,z) = \langle x,x^2,z\rangle, \ 0\leq x\leq 1, 0\leq z\leq 4$. The cross product of tangent vectors is
+\begin{align*}
+\bm{r}_x \times \bm{r}_z &= \begin{vmatrix} \bm{i} & \bm{j} & \bm{k} \\ 1 & 2x & 0 \\ 0 & 0 & 1 \end{vmatrix}\\
+&= 2x\bm{i}-\bm{j}.
+\end{align*}
+So we have $||\bm{r}_x\times \bm{r}_z|| = \sqrt{(2x)^2+(-1)^2} = \sqrt{4x^2+1}$. Now we can find $\bm{n}$ through the following:
+\begin{align*}
+\bm{n} = \frac{\bm{r}_x\times \bm{r}_z}{||\bm{r}_x\times \bm{r}_z||} = \frac{2x\bm{i}-\bm{j}}{\sqrt{4x^2+1}}.
+\end{align*}
+(Why does this give $\bm{n}$?). Now on the surface we have
+\begin{align*}
+\bm{F} = yz\bm{i}+x\bm{j}-z^2\bm{k}=x^2z\bm{i}+x\bm{j}-z^2\bm{k}.
+\end{align*}
+So we get
+\begin{align*}
+\bm{F}\cdot\bm{n} &= \frac{1}{\sqrt{4x^2+1}} \left(2x^3z-x+0\right)\\
+&= \frac{2x^3z-x}{\sqrt{4x^2+1}}.
+\end{align*}
+So the flux outward through the surface is
+\begin{align*}
+\int\int_S \bm{F}\cdot\bm{n}d\sigma &= \int_0^4 \int_0^1 \frac{2x^3z-x}{\sqrt{4x^2+1}} \sqrt{4x^2+1}dxdz\\
+&= \int_0^4\int_0^1(2x^3z-x)dxdz\\
+&= \int_0^4 \left[\frac{1}{2}x^4z-\frac{1}{2}x^2\right]_{x=0}^{x=1}dz\\
+&= \frac{1}{2} \int_0^4 (z-1)dz\\
+&= \left[\frac{1}{4}(z-1)^2\right]_0^4\\
+&= \frac{9}{4}-\frac{1}{4} = 2.
+\end{align*}
+\end{example}
+
+\bigskip
+
+\hrulefill
+
+\bigskip
+
+Just like with line integrals, we can use surface integrals to compute masses and moments for very thin shells.
+
+\bigskip
+
+\begin{definition}
+\textbf{Mass:} $M = \int\int_S \delta d\sigma \ \ (\delta = \delta(x,y,z) = \text{density at} (x,y,z)$\\
+\textbf{First moments about the coordinate planes:}\\
+$M_{yz} = \int\int_S x\delta d\sigma \ \ M_{xz} = \int\int_S y\delta d\sigma \ \ M_{xz} = \int\int_S z\delta d\sigma$
+\end{definition}
+
+\bigskip
+
+\hrulefill
+
+\bigskip
+
+\begin{example}
+Find the mass of a thin hemispherical shell of radius $a$ and constant density $\delta$.
+
+\bigskip
+
+We have already found $d\sigma$ before, so the mass here is
+\begin{align*}
+M=\int\int_S \delta d\sigma &= \delta \int_0^{2\pi} \int_0^{\pi/2} a^2\sin(\phi)d\phi d\theta\\
+&= 2\pi a^2\sigma.
+\end{align*}
+\end{example}
+
+\newpage
+
+% --------------------------------------------------------------
+%                         Sec 16.7
+% --------------------------------------------------------------
+
+\section{Stokes' Theorem (16.7)}
+
+Stokes' Theorem is actually just a generalization of Green's Theorem. We will first introduce a new important vector called the curl, and see how we can use it to arrive at Stokes' Theorem.
+
+\bigskip
+
+\begin{definition}
+The \textbf{curl vector} of the vector field $\bm{F} = M\bm{i}+N\bm{j}+P\bm{k}$ is defined to be
+\begin{align*}
+\text{curl}\bm{F} = \left(\frac{\partial P}{\partial y}-\frac{\partial N}{\partial z}\right)\bm{i}+\left(\frac{\partial M}{\partial z}-\frac{\partial P}{\partial x}\right)\bm{j}+\left(\frac{\partial N}{\partial x}-\frac{\partial M}{\partial y}\right)\bm{k}.
+\end{align*}
+\end{definition}
+
+\bigskip
+
+\hrulefill
+
+\bigskip
+
+Consider a fluid denoted by the field $\bm{F} = M\bm{i}+N\bm{j}+P\bm{k}$ flowing through space. At each point in space we can consider whether or not the fluid is rotating. If the fluid is rotating around the point $(x,y,z)$ then consider curling the fingers of your right hand in the direction of the rotation. Your thumb will then be pointing in the same direction as the curl vector, and the length of the curl vector lets you know how strongly the fluid is rotating about this point.
+
+\bigskip
+
+\hrulefill
+
+\bigskip
+
+Recall that the the circulation density of a vector field $\bm{F}=M\bm{i}+N\bm{j}$ at $(x,y)$ is $\frac{\partial N}{\partial x}-\frac{\partial M}{\partial y}$. But this circulation density is just $\text{curl}\bm{F}\cdot\bm{k}$, meaning the circulation density measures how much the vector field is circulating at a point around a vector parallel to the $z$-axis.
+
+\bigskip
+
+\hrulefill
+
+\bigskip
+
+Let $\nabla = \frac{\partial}{\partial x}\bm{i}+\frac{\partial}{\partial y}\bm{j}+\frac{\partial}{\partial z}\bm{k}$. Then the curl of $\bm{F}$ is $\nabla \times \bm{F}$.
+\begin{align*}
+\nabla \times \bm{F} &= \begin{vmatrix} \bm{i} & \bm{j} & \bm{k} \\ \frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\ M & N & P \end{vmatrix}\\
+&= \left(\frac{\partial P}{\partial y}-\frac{\partial N}{\partial z}\right)\bm{i}+\left(\frac{\partial M}{\partial z}-\frac{\partial P}{\partial x}\right)\bm{j}+\left(\frac{\partial N}{\partial x}-\frac{\partial M}{\partial y}\right)\bm{k}\\
+&= \text{curl}\bm{F}
+\end{align*}
+
+\bigskip
+
+\hrulefill
+
+\bigskip
+
+\begin{example}
+Find the curl of $\bm{F} = (x^2-z)\bm{i}+xe^z\bm{j}+xy\bm{k}$.
+
+\bigskip
+
+\begin{align*}
+\text{curl}\bm{F} = \nabla \times \bm{F} &= \begin{vmatrix} \bm{i} & \bm{j} & \bm{k} \\ \frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\ x^2-z & xe^z & xy \end{vmatrix}\\
+&= (x-xe^z)\bm{i}-(y+1)\bm{j}+(e^z-0)\bm{k}\\
+&= x(1-e^z)\bm{i}-(y+1)\bm{j}+e^z\bm{k}.
+\end{align*}
+\end{example}
+
+\bigskip
+
+\hrulefill
+
+\bigskip
+
+Recall the Green's Theorem (second form) compares the circulation inside of a region in the $xy$-plane to the circulation around the boundary of that region. But we could consider comparing these two quantities for surfaces that do not lie in the $xy$-plane. That is what Stokes' Theorem allows us to do.
+
+\bigskip
+
+\begin{theorem}{(Stokes' Theorem)}
+\\
+Let $S$ be a piecewise smooth oriented surface having a piecewise smooth boundary curve $C$. Let $\bm{F} = M\bm{i}+N\bm{j}+P\bm{k}$ be a vector field whose components have continuous first partial derivatives on an open region containing $S$. Then the circulation of $\bm{F}$ around $C$ in the direction counterclockwise with respect to the surface's unit normal vector $\bm{n}$ equals the integral of $\nabla \times \bm{F} \cdot \bm{n}$ over $S$.
+\begin{align*}
+\oint_C \bm{F}\cdot d\bm{r} = \int\int_S (\nabla \times \bm{F})\cdot\bm{n} d\sigma.
+\end{align*}
+\end{theorem}
+
+\bigskip
+
+\hrulefill
+
+\bigskip
+
+If $R$ is a region in the $xy$-plane bounded by $C$, then $d\sigma = dxdy$ and
+\begin{align*}
+(\nabla \times \bm{F})\cdot\bm{n} = (\nabla \times \bm{F})\cdot\bm{k} = \left(\frac{\partial N}{\partial x} - \frac{\partial M}{\partial y}\right).
+\end{align*}
+Then Stokes' Theorem becomes
+\begin{align*}
+\oint_C \bm{F}\cdot d\bm{r} = \int\int_R \left(\frac{\partial N}{\partial x} - \frac{\partial M}{\partial y}\right) dxdy,
+\end{align*}
+which is Green's Theorem.
+
+\bigskip
+
+\hrulefill
+
+\bigskip
+
+Also note from Stokes' Theorem that if two different oriented surfaces $S_1$ and $S_2$ have the same boundary $C$, their curl integrals are equal. This can be useful!
+
+\bigskip
+
+\hrulefill
+
+\bigskip
+
+\begin{example}
+Verify Stokes' Theorem for the hemisphere $S: \ x^2+y^2+z^2=9, \ z\geq 0,$, its bounding circle $C: \ x^2+y^2=9, \ z=0$, and the field $\bm{F} = y\bm{i}-x\bm{j}$.
+
+\bigskip
+
+A counterclockwise parametrization of the circle is $\bm{r}(\theta) = 3\cos(\theta)\bm{i}+3\sin(\theta)\bm{j}, \ 0\leq \theta\leq 2\pi$. So we have
+\begin{align*}
+d\bm{r} &= (-3\sin(\theta)d\theta)\bm{i}+(3\cos(\theta)d\theta)\bm{j}\\
+\bm{F} &= y\bm{i}-x\bm{j} = 3\sin(\theta)\bm{i}-3\cos(\theta)\bm{j}\\
+\bm{F}\cdot d\bm{r} &= -9\sin^2(\theta)d\theta - 9\cos^2(\theta)d\theta = -9d\theta\\
+\oint_C \bm{F}\cdot d\bm{r} &= \int_0^{2\pi} -9d\theta = -18\pi.
+\end{align*}
+For the other side of Stokes' formula, note that
+\begin{align*}
+\nabla \times \bm{F} &= \left(\frac{\partial P}{\partial y}-\frac{\partial N}{\partial z}\right)\bm{i}+\left(\frac{\partial M}{\partial z}-\frac{\partial P}{\partial x}\right)\bm{j}+\left(\frac{\partial N}{\partial x}-\frac{\partial M}{\partial y}\right)\bm{k}\\
+&= -2\bm{k}
+\end{align*}
+To find $\bm{n}$ let $f=x^2+y^2+z^2-9$, then $\nabla f = 2(x\bm{i}+y\bm{j}+z\bm{k})$ and $||\nabla f|| = 2\sqrt{x^2+y^2+z^2}$. So
+\begin{align*}
+\bm{n} = \frac{\nabla f}{||\nabla f||} &= \frac{x\bm{i}+y\bm{j}+z\bm{k}}{\sqrt{x^2+y^2+z^2}}\\
+&= \frac{x\bm{i}+y\bm{j}+z\bm{k}}{3}.
+\end{align*}
+With a little work we could also find $d\sigma = \frac{3}{z}dA$. So we have
+\begin{align*}
+\nabla \times \bm{F}\cdot\bm{n}d\sigma = -\frac{2z}{3}\frac{3}{z}dA = -2dA.
+\end{align*}
+Thus
+\begin{align*}
+\int\int_S \nabla \times \bm{F}\cdot\bm{n}d\sigma = \int\int_{x^2+y^2\leq 9} -2dA = -18\pi.
+\end{align*}
+\end{example}
+
+\bigskip
+
+\hrulefill
+
+\bigskip
+
+\begin{example}
+Find the circulation of the field $\bm{F}=(x^2-y)\bm{i}+4z\bm{j}+x^2\bm{k}$ around the curve $C$ in which the plane $z=2$ meets the cone $z=\sqrt{x^2+y^2}$, counterclockwise as viewed from above.
+
+\bigskip
+
+\begin{center}
+\includegraphics[scale=0.8]{f_f11}
+\end{center}
+
+\bigskip
+
+We have seen that we can parametrize the cone as $\bm{r}(r,\theta) = \langle r\cos(\theta),r\sin(\theta),r\rangle$. In order to build a cone of the correct size we need $0\leq r\leq 2, \ 0\leq \theta \leq 2\pi$. Now our normal vector is given by
+\begin{align*}
+\bm{n} &= \frac{\bm{r}_r\times\bm{r}_\theta}{||\bm{r}_r\times\bm{r}_\theta||}\\
+&= \frac{-r\cos(\theta)\bm{i}-r\sin(\theta)\bm{j}+r\bm{k}}{\sqrt{2}r}.
+\end{align*}
+I skipped some steps here because we have calculated $\bm{r}_r\times\bm{r}_\theta$ before. We have also seen that $d\sigma = \sqrt{2}rdrd\theta$. Now we also have
+\begin{align*}
+\nabla \times \bm{F} &= \begin{vmatrix} \bm{i} & \bm{j} & \bm{k} \\ \frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\ x^2-y & 4z & x^2 \end{vmatrix}\\
+&= -4\bm{i} - 2x\bm{j} + \bm{k}\\
+&= -4\bm{i}-2r\cos(\theta)\bm{j}+\bm{k}.
+\end{align*}
+Thus we see
+\begin{align*}
+\nabla \times \bm{F} \cdot\bm{n} &= \frac{1}{\sqrt{2}}\left(4\cos(\theta)+2r\cos(\theta)\sin(\theta)+1\right)\\
+&= \frac{1}{\sqrt{2}} \left(4\cos(\theta)+r\sin(2\theta)+1\right).
+\end{align*}
+And by Stokes' Theorem we finally have
+\begin{align*}
+\oint_C \bm{F}\cdot d\bm{r} &= \int\int_S \nabla \times \bm{F}\cdot \bm{n}d\sigma\\
+&= \frac{1}{\sqrt{2}} \int_0^{2\pi} \int_0^2(4\cos(\theta)+r\sin(2\theta)+1)(\sqrt{2}rdrd\theta)\\
+&=4\pi.
+\end{align*}
+\end{example}
+
+\bigskip
+
+\hrulefill
+
+\bigskip
+
+\begin{example}
+There is an easier way to do this problem. Remember that two oriented surfaces $S_1$ and $S_2$ have the same curl integrals if their boundary is the same. So let's instead look at the surface consisting of a disk lying in the plane $z=3$. Then the normal vector to the surface $S$ is $\bm{n}=\bm{k}$. So now we again have $\nabla \times \bm{F} = -4\bm{i}-2x\bm{j}+\bm{k}$, but now $\nabla \times \bm{F} \cdot\bm{n} = 1$. So
+\begin{align*}
+\int\int_S \nabla \cdot \bm{F} \cdot\bm{n} d\sigma = \int\int_{x^2+y^2\leq 4} 1dA = 4\pi.
+\end{align*}
+This provides a good way of simplifying some surface integrals!
+\end{example}
+
+\bigskip
+
+\hrulefill
+
+\bigskip
+
+We can also work the other way. That is, we can use Stokes' Theorem to calculate a line integral instead of a complicated surface integral.
+
+\bigskip
+
+\begin{example}
+Let the surface $S$ be the elliptical paraboloid $z=x^2+4y^2$ lying beneath the plane $z=1$. We define the orientation of $S$ by taking the \textit{inner} normal vector $\bm{n}$ to the surface, which is normal having a positive $\bm{k}$-component. Find the flux of the curl $\nabla \times \bm{F}$ across $S$ in the direction $\bm{n}$ for the vector field $\bm{F}=y\bm{i}-xz\bm{j}+xz^2\bm{k}$.
+
+\bigskip
+
+\begin{center}
+\includegraphics[scale=0.8]{f_f12}
+\end{center}
+
+\bigskip
+
+We can find this flux by using Stokes' Theorem to calculate the circulation of $\bm{F}$ around $C$. A parametrization of the ellipse $C$ is given by
+\begin{align*}
+\bm{r}(t) = \cos(t)\bm{i}+\frac{1}{2}\sin(t)\bm{j}+\bm{k}, \ \ 0\leq t \leq 2\pi.
+\end{align*}
+Now we have
+\begin{align*}
+\bm{F}(\bm{r}(t))=\frac{1}{2}\sin(t)\bm{i}-\cos(t)\bm{j}+\cos(t)\bm{k}\\
+\frac{d\bm{r}}{dt}=-\sin(t)\bm{i}+\frac{1}{2}\cos(t)\bm{j}+0\bm{k}.
+\end{align*}
+So using Stokes' Theorem we get
+\begin{align*}
+\int\int_S \nabla \times \bm{F}\cdot\bm{n}d\sigma &= \oint_C \bm{F}\cdot d\bm{r}\\
+&= \int_0^{2\pi} \bm{F}(\bm{r}(t)) \cdot \frac{d\bm{r}}{dt}{dt}\\
+&= \int_0^{2\pi} \left(-\frac{1}{2}\sin^2(t)-\frac{1}{2}\cos^2(t)\right)dt\\
+&=-\frac{1}{2}\int_0^{2\pi} dt\\
+&=-\pi.
+\end{align*}
+\end{example}
+
+\bigskip
+
+\hrulefill
+
+\bigskip
+
+Can we say anything about the curl of gradient fields? Recall that a gradient field is a field $\bm{F}$ such that $\bm{F} = \nabla f$ for some function $f(x,y,z)$. Well, suppose $f(x,y,z)$ has continuous second partial derivatives and see that
+\begin{align*}
+\nabla \times \bm{F} = \nabla \times \nabla f &= \begin{vmatrix} \bm{i} & \bm{j} & \bm{k} \\ \frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial y} \\ \frac{\partial f}{\partial x} & \frac{\partial f}{\partial y} & \frac{\partial f}{\partial z} \end{vmatrix}\\
+&= (f_{zy}-f_{yz})\bm{i}-(f_{zx}-f_{xz})\bm{j}+(f_{yx}-f_{xy})\bm{k}\\
+&= 0.
+\end{align*}
+
+\newpage
+
+% --------------------------------------------------------------
+%                         Sec 16.8
+% --------------------------------------------------------------
+
+\section{The Divergence Theorem and a Unified Theory (16.8)}
+
+Stokes' Theorem is a generalization of the curl form of Green's Theorem. We will now learn about the Divergence Theorem, which is just a generalization of the divergence form of Green's Theorem.
+
+\bigskip
+
+\begin{definition}
+The \textbf{divergence} of a vector field $\bm{F} = M(x,y,z)\bm{i}+N(x,y,z)\bm{j}+P(x,y,z)\bm{k}$ is the scalar function
+\begin{align*}
+\text{div} \bm{F} = \nabla \cdot \bm{F} = \frac{\partial M}{\partial x}+\frac{\partial N}{\partial y}+\frac{\partial P}{\partial z}.
+\end{align*}
+\end{definition}
+
+\bigskip
+
+The intuition here is exactly the same as in three dimensions. If $\bm{F}$ represents the velocity of a fluid in space, the value of $\text{div}\bm{F}$ at a point $(x,y,z)$ is the rate at which the gas is compressing or expanding at that point. Divergence is flux per unit volume or flux density.
+
+\bigskip
+
+\hrulefill
+
+\bigskip
+
+\begin{example}
+The following vector fields represent the velocity of a gas flowing in space. Find the divergence of each vector field and interpret its physical meaning.
+\begin{itemize}
+\item[a.] $\bm{F}(x,y,z) = x\bm{i}+y\bm{j}+z\bm{k}$
+\item[b.] $\bm{F}(x,y,z) = -x\bm{i}-y\bm{j}-z\bm{k}$
+\item[c.] $\bm{F}(x,y,z) = -y\bm{i}+x\bm{j}$
+\item[d.] $\bm{F}(x,y,z) = z\bm{j}$
+\end{itemize}
+
+\bigskip
+
+\begin{center}
+\includegraphics[scale=0.65]{f_f13}
+\end{center}
+
+\bigskip
+
+\begin{itemize}
+\item[a.] $\text{div}\bm{F} = \frac{\partial}{\partial x}(x)+\frac{\partial}{\partial y}(y)+\frac{\partial}{\partial z}(z) = 3$. The fluid is undergoing uniform expansion at all points.
+\item[b.] $\text{div}\bm{F} = \frac{\partial}{\partial x}(-x)+\frac{\partial}{\partial y}(-y)+\frac{\partial}{\partial z}(-z) = -3$. The fluid is undergoing uniform compression at all points.
+\item[c.] $\text{div}\bm{F} = \frac{\partial}{\partial x}(-y)+\frac{\partial}{\partial y}(x)=0$. The fluid is neither expanding nor compressing.
+\item[d.] $\text{div}\bm{F} = \frac{\partial}{\partial y}(z)=0$. The fluid is neither expanding nor compressing.
+\end{itemize}
+\end{example}
+
+\bigskip
+
+\hrulefill
+
+\bigskip
+
+\begin{theorem}{(The Divergence Theorem)}
+\\
+Let $\bm{F}$ be a vector field whose components have continuous first partial derivatives, and let $S$ be a piecewise smooth oriented closed surface. The flux of $\bm{F}$ across $S$ in the direction of the surface's outward unit normal field $\bm{n}$ equals the integral of $\nabla \cdot \bm{F}$ over the region $D$ enclosed by the surace:
+\begin{align*}
+\int\int_S \bm{F}\cdot\bm{n}d\sigma = \int\int\int_D \nabla \cdot \bm{F} dV.
+\end{align*}
+\end{theorem}
+
+\bigskip
+
+The Divergence Theorem states that the outward flux of a field across a surface is equal to the divergence of the field in region defined by the interior of the surface. Good intuition might come from thinking of divergence as density. If the $\text{div}\bm{F}$ at a point $P$ in a solid, then the density at that point is decreasing. The Divergence Theorem just states that the density of a solid (RHS of theorem) depends only on what happens at the boundary.
+
+\bigskip
+
+\hrulefill
+
+\bigskip
+
+\begin{example}
+Verify the Divergence Theorem for the the expanding vector field $\bm{F}=x\bm{i}+y\bm{j}+z\bm{k}$ over the sphere $x^2+y^2+z^2=a^2$.
+
+\bigskip
+
+We can calculate the unit outward normal field $\bm{n}$ of the sphere by
+\begin{align*}
+\bm{n}=\frac{\nabla f}{||\nabla f||}
+\end{align*}
+where $f(x,y,z) = x^2+y^2+z^2-a^2$. This gives
+\begin{align*}
+\bm{n} = \frac{x\bm{i}+y\bm{j}+z\bm{k}}{\sqrt{x^2+y^2+z^2}} = \frac{x\bm{i}+y\bm{j}+z\bm{k}}{a}.
+\end{align*}
+Thus we have
+\begin{align*}
+\bm{F}\cdot\bm{n} = \frac{x^2+y^2+z^2}{a} = \frac{a^2}{a} = a.
+\end{align*}
+Giving
+\begin{align*}
+\int\int_S \bm{F}\cdot\bm{n}d\sigma = \int\int_S ad\sigma = a\int\int_S d\sigma = 4\pi a^3.
+\end{align*}
+For the other side of the equation in the Divergence Theorem note that
+\begin{align*}
+\nabla \cdot \bm{F} = 3,
+\end{align*}
+so 
+\begin{align*}
+\int\int\int_D \nabla \cdot \bm{F} dV = \int\int\int_D 3dV = 3\left(\frac{4}{3}\pi a^3\right) = 4\pi a^3.
+\end{align*}
+\end{example}
+
+\bigskip
+
+\hrulefill
+
+\bigskip
+
+\begin{example}
+Find the flux of $\bm{F}=xy\bm{i}+yz\bm{j}+xz\bm{k}$ outward through the surface of the cube cut from the first octant by the planes $x=1$, $y=1$, and $z=1$.
+
+\bigskip
+
+We could calculate the flux as a sum of six different integrals (one for each side), but we could more easily compute the flux by integrating the divergence. So note that
+\begin{align*}
+\nabla \cdot \bm{F} &= \frac{\partial}{\partial x}(xy)+\frac{\partial}{\partial y}(yz)+\frac{\partial}{\partial z}(xz)\\
+&= y+z+x.
+\end{align*}
+Thus we have
+\begin{align*}
+\text{Flux} &= \int_0^1\int_0^1\int_0^1 (x+y+z)dxdydz\\
+&= \frac{1}{2}+\frac{1}{2}+\frac{1}{2}\\
+&= \frac{3}{2}.
+\end{align*}
+\end{example}
+
+\bigskip
+
+\hrulefill
+
+\bigskip
+
+\begin{example}
+Find the net outward flux of the field
+\begin{align*}
+\bm{F}=\frac{x\bm{i}+y\bm{j}+z\bm{k}}{\rho^3}, \ \rho=\sqrt{x^2+y^2+z^2}
+\end{align*}
+across the boundary of the region $D: 0<a^2 \leq x^2+y^2+z^2 \leq b^2$.
+
+\bigskip
+
+\begin{center}
+\includegraphics[scale=0.65]{f_f14}
+\end{center}
+
+\bigskip
+
+We can find the flux by integrating the divergence over $D$. Note that
+\begin{align*}
+\nabla \cdot \bm{F} &= \frac{\partial M}{\partial x} + \frac{\partial N}{\partial y} +\frac{\partial P}{\partial z}.
+\end{align*}
+Now in order to find these partial derivatives we must know $\partial \rho/ \partial x$ and the other partials of $\rho$. So we have
+\begin{align*}
+\frac{\partial \rho}{\partial x} &= \frac{1}{2}(x^2+y^2+z^2)^{-1/2}(2x) = \frac{x}{\rho}\\
+\frac{\partial \rho}{\partial y} &= \frac{1}{2}(x^2+y^2+z^2)^{-1/2}(2y) = \frac{y}{\rho}\\
+\frac{\partial \rho}{\partial z} &= \frac{1}{2}(x^2+y^2+z^2)^{-1/2}(2z) = \frac{z}{\rho}.
+\end{align*}
+This gives
+\begin{align*}
+\frac{\partial M}{\partial x} &= \frac{\partial}{\partial x}(x\rho^{-3})\\
+&= \rho^{-3}-3x\rho^{-4}\frac{\partial \rho}{\partial x}\\
+&= \frac{1}{\rho^3}-\frac{3x^2}{\rho^5}\\
+\frac{\partial N}{\partial y} &= \frac{\partial}{\partial y}(y\rho^{-3})\\
+&= \rho^{-3}-3y\rho^{-4}\frac{\partial \rho}{\partial y}\\
+&= \frac{1}{\rho^3}-\frac{3y^2}{\rho^5}\\
+\frac{\partial P}{\partial z} &= \frac{\partial}{\partial z}(z\rho^{-3})\\
+&= \rho^{-3}-3z\rho^{-4}\frac{\partial \rho}{\partial z}\\
+&= \frac{1}{\rho^3}-\frac{3z^2}{\rho^5}.
+\end{align*}
+So
+\begin{align*}
+\text{div}\bm{F} = \frac{3}{\rho^3}-\frac{3}{\rho^5}(x^2+y^2+z^2) = \frac{3}{\rho^3}-\frac{3\rho^2}{\rho^5} = 0.
+\end{align*}
+Finally this means that $\int\int\int_D \nabla \cdot \bm{F}dV = 0$. What does this mean about the flux through this region? Does the flux of this particular field through a spherical shell depend on the size of the shell?
+\end{example}
+
+\bigskip
+
+\hrulefill
+
+\bigskip
+
+\begin{definition}
+\text{Summary of the Main Theorems from Chapter 16:}\\
+\begin{align*}
+\textbf{Divergence Theorem}: \ \ \ \int\int_S \bm{F}\cdot\bm{n}d\sigma = \int\int\int_D \nabla \cdot \bm{F}dV.
+\end{align*}
+When $\bm{F} = M\bm{i}+N\bm{j}$, we get
+\begin{align*}
+\textbf{Normal Form of Green's Theorem:} \ \ \ \oint_C \bm{F}\cdot\bm{n}ds = \int\int_R \nabla \cdot \bm{F}dA
+\end{align*}
+\hrulefill
+\begin{align*}
+\textbf{Stokes' Theorem}: \ \ \ \oint_C \bm{F}\cdot d\bm{r} = \int\int_S \nabla \times \bm{F}\cdot \bm{n} d\sigma.
+\end{align*}
+When $\bm{n}=\bm{k}$, meaning our region is in the $xy$-plane, we get
+\begin{align*}
+\textbf{Tangential Form of Green's Theorem:} \ \ \ \oint_C \bm{F}\cdot d\bm{r} = \int\int_R \nabla \times \bm{F}\cdot\bm{k} dA
+\end{align*}
+\end{definition}
+
+\end{document}
